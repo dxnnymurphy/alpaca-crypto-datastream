@@ -1,0 +1,10 @@
+.swagger-ui .topbar {
+    background-color: #F0FFFF;
+    padding: 10px 0;
+}
+
+.swagger-ui img {
+    content: url("https://www.keplercheuvreux.com/app/themes/kepler_cheuvreux/assets/svg/kepler-blue.svg");
+    width: 140px; /* width of your logo */
+    height: 40px; /* height of your logo */
+}

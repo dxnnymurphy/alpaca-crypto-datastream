@@ -1,0 +1,65 @@
+application:
+  enabled: true
+  namespace: cryptodatastream
+  name: datastream
+  version: v1
+
+controller:
+  apiservice:
+    host: 127.0.0.1
+    port: 31900
+    proxy:
+      swagger:
+        url: "/proxy/cryptodatastream/swagger/1"
+      sqlite:
+        url: "/proxy/cryptodatastream/sqlite/1"
+        target:
+          host: 127.0.0.1
+          port: 18080
+      grpc:
+        url: "/proxy/cryptodatastream/grpc/1"
+        target:
+          host: 127.0.0.1
+          port: 31200
+      prometheus:
+        url: "/proxy/cryptodatastream/prometheus"
+        target:
+          host: 127.0.0.1
+          port: 9090
+      grafana:
+        url: "/proxy/cryptodatastream/grafana"
+        target:
+          host: 127.0.0.1
+          port: 3000
+      kafka:
+        url: "/proxy/cryptodatastream/kafka"
+        target:
+          host: 127.0.0.1
+          port: 8080
+      repo:
+        url: "/proxy/cryptodatastream/repo/public"
+        target:
+          host: 127.0.0.1
+          port: 80
+      cli:
+        url: "/proxy/cryptodatastream/cli"
+        target: 
+          host: 127.0.0.1
+          port: 55555
+      kubernetesproxy:
+        url: "/proxy/cryptodatastream/kubernetesproxy"
+        target: 
+          host: 127.0.0.1
+          port: 44444
+    ops:
+      monitoring:
+        api:
+            url: "/ops/monitoring/api"
+
+security:
+  authentication:
+    basic:
+      admin:
+        username: admin
+        password: admin  
+    
