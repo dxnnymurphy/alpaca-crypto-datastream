@@ -3,7 +3,7 @@ package configuration
 import (
 	"context"
 
-	configurationv1 "dxnnymurphy.io/cryptodatastream/pkg/configuration/v1"
+	configurationv1 "dxnnymurphy.io/datastream/pkg/configuration/v1"
 )
 
 var (

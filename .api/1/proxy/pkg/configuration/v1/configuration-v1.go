@@ -9,7 +9,7 @@ import (
 
 	"gopkg.in/yaml.v2"
 
-	"dxnnymurphy.io/cryptodatastream/pkg/resource"
+	"dxnnymurphy.io/datastream/pkg/resource"
 )
 
 type ConfigurationV1 struct {

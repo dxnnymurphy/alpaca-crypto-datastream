@@ -1,6 +1,6 @@
 application:
   enabled: true
-  namespace: cryptodatastream
+  namespace: datastream
   name: datastream
   version: v1
 
@@ -10,44 +10,44 @@ controller:
     port: 31900
     proxy:
       swagger:
-        url: "/proxy/cryptodatastream/swagger/1"
+        url: "/proxy/datastream/swagger/1"
       sqlite:
-        url: "/proxy/cryptodatastream/sqlite/1"
+        url: "/proxy/datastream/sqlite/1"
         target:
           host: 127.0.0.1
           port: 18080
       grpc:
-        url: "/proxy/cryptodatastream/grpc/1"
+        url: "/proxy/datastream/grpc/1"
         target:
           host: 127.0.0.1
           port: 31200
       prometheus:
-        url: "/proxy/cryptodatastream/prometheus"
+        url: "/proxy/datastream/prometheus"
         target:
           host: 127.0.0.1
           port: 9090
       grafana:
-        url: "/proxy/cryptodatastream/grafana"
+        url: "/proxy/datastream/grafana"
         target:
           host: 127.0.0.1
           port: 3000
       kafka:
-        url: "/proxy/cryptodatastream/kafka"
+        url: "/proxy/datastream/kafka"
         target:
           host: 127.0.0.1
           port: 8080
       repo:
-        url: "/proxy/cryptodatastream/repo/public"
+        url: "/proxy/datastream/repo/public"
         target:
           host: 127.0.0.1
           port: 80
       cli:
-        url: "/proxy/cryptodatastream/cli"
+        url: "/proxy/datastream/cli"
         target: 
           host: 127.0.0.1
           port: 55555
       kubernetesproxy:
-        url: "/proxy/cryptodatastream/kubernetesproxy"
+        url: "/proxy/datastream/kubernetesproxy"
         target: 
           host: 127.0.0.1
           port: 44444

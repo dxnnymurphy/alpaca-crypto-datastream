@@ -1,0 +1,385 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Data Stream",
+    "version": "0.1",
+    "contact": {
+      "name": "Daniel Murphy",
+      "url": "https://dxnnymurphy.github.io/",
+      "email": "dannymurphy_7@icloud.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "tags": [
+    {
+      "name": "ServiceDataStream"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/proxy/datastream/api/1/task": {
+      "post": {
+        "operationId": "ServiceDataStream_CreateTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcTask"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcTask"
+            }
+          }
+        ],
+        "tags": [
+          "ServiceDataStream"
+        ]
+      }
+    },
+    "/proxy/datastream/api/1/task/{value}": {
+      "get": {
+        "operationId": "ServiceDataStream_ReadTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcTask"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "value",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ServiceDataStream"
+        ]
+      },
+      "delete": {
+        "operationId": "ServiceDataStream_DeleteTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcTask"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "value",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ServiceDataStream"
+        ]
+      }
+    },
+    "/proxy/datastream/api/1/tasks": {
+      "get": {
+        "operationId": "ServiceDataStream_ListTasks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcTasks"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ServiceDataStream"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "grpcCurrency": {
+      "type": "string",
+      "enum": [
+        "CURRENCY_UNKNOWN",
+        "CURRENCY_ETH_USD",
+        "CURRENCY_BTC_USD"
+      ],
+      "default": "CURRENCY_UNKNOWN"
+    },
+    "grpcTask": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/grpcTaskMetadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/grpcTaskSpec"
+        },
+        "status": {
+          "$ref": "#/definitions/grpcTaskStatus"
+        }
+      }
+    },
+    "grpcTaskAlpacaCryptoReplayTradeSearch": {
+      "type": "object",
+      "properties": {
+        "Vendor": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string"
+        },
+        "endTime": {
+          "type": "string"
+        },
+        "searchDuration": {
+          "type": "string"
+        }
+      }
+    },
+    "grpcTaskAlpacaCryptoTradeSearch": {
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string"
+        },
+        "endTime": {
+          "type": "string"
+        },
+        "searchDuration": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "grpcTaskMetadata": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/grpcTaskType"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "vendor": {
+          "$ref": "#/definitions/grpcVendor"
+        },
+        "currency": {
+          "$ref": "#/definitions/grpcCurrency"
+        },
+        "executorAffinity": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "grpcTaskSpec": {
+      "type": "object",
+      "properties": {
+        "taskAlpacaCryptoTradeSearch": {
+          "$ref": "#/definitions/grpcTaskAlpacaCryptoTradeSearch"
+        },
+        "taskAlpacaCryptoReplayTradeSearch": {
+          "$ref": "#/definitions/grpcTaskAlpacaCryptoReplayTradeSearch"
+        }
+      }
+    },
+    "grpcTaskStatus": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/grpcTaskStatusType"
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    },
+    "grpcTaskStatusType": {
+      "type": "string",
+      "enum": [
+        "TaskStatusType_UNKNOWN",
+        "TASK_STATUS_DONE",
+        "TASK_STATUS_CREATED",
+        "TASK_STATUS_ERROR_INVALID_ARGUMENT",
+        "TASK_STATUS_ERROR_ALREADY_EXISTS",
+        "TASK_STATUS_ERROR_TRANSIENT",
+        "TASK_STATUS_ERROR_UNKNOWN"
+      ],
+      "default": "TaskStatusType_UNKNOWN"
+    },
+    "grpcTaskType": {
+      "type": "string",
+      "enum": [
+        "TaskType_UNKNOWN",
+        "TASK_ALPACA_CRYPTO_TRADE_SEARCH",
+        "TASK_ALPACA_CRYPTO_REPLAY_TRADE_SEARCH"
+      ],
+      "default": "TaskType_UNKNOWN"
+    },
+    "grpcTasks": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/grpcTasksMetadata"
+        },
+        "spec": {
+          "$ref": "#/definitions/grpcTasksSpec"
+        }
+      }
+    },
+    "grpcTasksMetadata": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "grpcTasksSpec": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/grpcTask"
+          }
+        },
+        "numberOfItems": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "grpcVendor": {
+      "type": "string",
+      "enum": [
+        "VENDOR_UNKNOWN",
+        "VENDOR_ALPACA_CRYPTO_API"
+      ],
+      "default": "VENDOR_UNKNOWN"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "X-API-Key",
+      "in": "header",
+      "x-amazon-apigateway-authorizer": {
+        "authorizerResultTtlInSeconds": 60,
+        "type": "token"
+      },
+      "x-amazon-apigateway-authtype": "oauth2"
+    },
+    "BasicAuth": {
+      "type": "basic"
+    },
+    "OAuth2": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "https://kcde.uat.keplercheuvreux.io/proxy/v1/security/authentication/oauth/authorize",
+      "tokenUrl": "https://kcde.uat.keplercheuvreux.io/proxy/v1/security/authentication/oauth/token",
+      "scopes": {
+        "admin": "Grants read and write access to administrative information",
+        "read": "Grants read access",
+        "write": "Grants write access"
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": [],
+      "BasicAuth": []
+    },
+    {
+      "ApiKeyAuth": [],
+      "OAuth2": [
+        "read",
+        "write"
+      ]
+    }
+  ],
+  "externalDocs": {
+    "description": "Documentation",
+    "url": "https://github.com/dxnnymurphy/alpaca-crypto-datastream"
+  }
+}

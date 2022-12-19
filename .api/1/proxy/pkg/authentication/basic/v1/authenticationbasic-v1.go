@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"dxnnymurphy.io/cryptodatastream/pkg/configuration"
+	"dxnnymurphy.io/datastream/pkg/configuration"
 )
 
 type AuthenticationBasicV1 struct {

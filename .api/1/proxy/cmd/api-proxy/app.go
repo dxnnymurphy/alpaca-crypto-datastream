@@ -6,7 +6,7 @@ import (
 	"os"
 	"os/signal"
 
-	"dxnnymurphy.io/cryptodatastream/pkg/application"
+	"dxnnymurphy.io/datastream/pkg/application"
 )
 
 func main() {
