@@ -8,7 +8,7 @@ build-proto: build-proto-go build-proto-python
 
 .PHONY: build-proto-go
 build-proto-go:
-	cd src/model/cryptodatastream; \
+	cd src/model/datastream; \
 		mkdir -p ./out; \
 		protoc \
 			-I. \
@@ -20,12 +20,12 @@ build-proto-go:
 			--openapiv2_out=./out --openapiv2_opt=logtostderr=true \
 			--experimental_allow_proto3_optional \
 			./*.proto
-	mkdir -p .dist/go; mv src/model/cryptodatastream/out/* .dist/go/
-	rm -rf src/model/cryptodatastream/out
+	mkdir -p .dist/go; mv src/model/datastream/out/* .dist/go/
+	rm -rf src/model/datastream/out
 
 .PHONY: build-proto-python
 build-proto-python:
-	cd src/model/cryptodatastream; \
+	cd src/model/datastream; \
 		mkdir -p ./out; \
 		touch ./out/__init__.py; \
 		python -m grpc_tools.protoc \
@@ -35,9 +35,9 @@ build-proto-python:
 			--python_out=./out  --grpc_python_out=./out \
 			--experimental_allow_proto3_optional \
 			./*.proto 
-	for FILE in `grep -Iin "^import.*_pb2.*" -R src/model/cryptodatastream/out | cut -f 1 -d ':' | sort -u`; do sed -i "s/^import.*_pb2.*/from . &/g" $$FILE; done
-	mkdir -p .dist/python; mv src/model/cryptodatastream/out/* .dist/python/
-	rm -rf src/model/cryptodatastream/out
+	for FILE in `grep -Iin "^import.*_pb2.*" -R src/model/datastream/out | cut -f 1 -d ':' | sort -u`; do sed -i "s/^import.*_pb2.*/from . &/g" $$FILE; done
+	mkdir -p .dist/python; mv src/model/datastream/out/* .dist/python/
+	rm -rf src/model/datastream/out
 
 .PHONY: clean
 clean: clean-proto

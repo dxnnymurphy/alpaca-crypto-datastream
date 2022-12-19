@@ -1,0 +1,67 @@
+version: '3'
+services:
+  #######################################################################
+  ### services :: _api_1_proxy
+  ########################################################################
+  _api_1_proxy:
+    build:
+      context: $PWD/.api/1/proxy
+      dockerfile: .hack/build/docker/Dockerfile
+    image: localhost/kc-tradingexpert-fixlogtracer/api_1_proxy:latest
+    privileged: true
+    restart: always
+    env_file:
+    #- $PWD/config/__env.d/credential/credential.api.1.proxy.env.conf
+    - $PWD/config/__env.d/kc-data-pipeline.api.1.proxy.env.conf
+    ports:
+    - 127.0.0.1:31111:8080
+    volumes:
+    - $PWD/data/workspace/:/kcde/workspace/
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '2.0'
+  #######################################################################
+  ### services :: _api_1_service
+  ########################################################################
+  _api_1_service:
+    build:
+      context: $PWD/.api/1/service
+      dockerfile: .hack/build/docker/Dockerfile
+    image: localhost/kc-tradingexpert-fixlogtracer/api_1_service:latest
+    privileged: true
+    restart: always
+    env_file:
+    - $PWD/config/__env.d/kc-data-pipeline.api.1.service.env.conf
+    ports:
+    - 127.0.0.1:31112:8080
+    volumes:
+    - $PWD/data/workspace/:/kcde/workspace/
+    - $PWD/config/_api_1_service/restbodytemplate/:/var/asset/restbodytemplate/
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '4.0'
+  
+  logstash:
+    image: logstash:8.4.0
+    privileged: true
+    restart: always
+    volumes:
+      - $PWD/config/logstash/pipelines.yml:/usr/share/logstash/config/pipelines.yml
+      - $PWD/config/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - $PWD/config/logstash/pipeline/:/usr/share/logstash/pipeline/
+      - $PWD/data/season-1819_json.json:/usr/share/logstash/data/season-1819_json.json
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '2.0'
+
+networks:
+  default:
+    external:
+      name: services-network
+

@@ -1,5 +1,5 @@
 FROM golang:1.18
-ADD .dist/bin/kcde-api-proxy /bin
+ADD .dist/bin/api-proxy /bin
 
 RUN apt update -y; \
     apt install -y sudo; \

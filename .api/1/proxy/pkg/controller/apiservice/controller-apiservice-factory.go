@@ -3,7 +3,7 @@ package controllerapiservice
 import (
 	"context"
 
-	controllerapiservicev1 "dxnnymurphy.io/cryptodatastream/pkg/controller/apiservice/v1"
+	controllerapiservicev1 "dxnnymurphy.io/datastream/pkg/controller/apiservice/v1"
 )
 
 var (

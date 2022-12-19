@@ -5,8 +5,8 @@ import (
 	"os"
 
 	"github.com/urfave/cli/v2"
-	"dxnnymurphy.io/cryptodatastream/pkg/configuration"
-	controllerapiservice "dxnnymurphy.io/cryptodatastream/pkg/controller/apiservice"
+	"dxnnymurphy.io/datastream/pkg/configuration"
+	controllerapiservice "dxnnymurphy.io/datastream/pkg/controller/apiservice"
 )
 
 type ApplicationV1 struct {

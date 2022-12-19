@@ -1,0 +1,40 @@
+application:
+  enabled: true
+  namespace: datastream
+  name: datastream-api-service
+  version: v1
+
+controller:
+  grpcservice:
+    host: 127.0.0.1
+    port: 31200
+
+service:
+  executorpool:
+    size: 2
+  ops:
+    monitoring:
+      api:
+        url: "/ops/monitoring/api"      # NOTE: This is a dummy endpoint, which is NOT used at all.
+        host: 127.0.0.1
+        port: 31900
+
+repository:
+  connectivity:
+    kafka:
+      "1":
+        bootstrap_servers: "redpanda:29092"
+        topic: "dev_alpaca_crypto_trades_1"
+        spec:
+          queue_buffering_max_messages: 10000000
+          queue_buffering_max_ms: 50
+          batch_size: 262144
+    rest:
+      alpaca:
+        crypto:
+          "1":
+            url: "http://uluat:12460/rest/2/log/search"
+            method: "POST"
+            #headers: {"Apca-Api-Key-Id": "AKCWBCEN3TVA6NL7U243", "Apca-Api-Secret-Key": "6Ld2Xj5Wyx3IatXFhF4BsYrud6z67UUl8iMYdwjX"}
+            bodytemplate: ~
+            params: ~

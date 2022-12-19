@@ -3,7 +3,7 @@ package authenticationbasic
 import (
 	"context"
 
-	authenticationbasicv1 "dxnnymurphy.io/cryptodatastream/pkg/authentication/basic/v1"
+	authenticationbasicv1 "dxnnymurphy.io/datastream/pkg/authentication/basic/v1"
 )
 
 var (

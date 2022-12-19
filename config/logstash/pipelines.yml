@@ -1,0 +1,2 @@
+- pipeline.id: alpaca_crypto_ingesttion_scheduler
+  path.config: "/usr/share/logstash/pipeline/alpaca_crypto_ingesttion_scheduler"

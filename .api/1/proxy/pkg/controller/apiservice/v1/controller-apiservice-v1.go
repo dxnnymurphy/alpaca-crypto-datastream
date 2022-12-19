@@ -18,10 +18,10 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	authenticationbasic "dxnnymurphy.io/cryptodatastream/pkg/authentication/basic"
-	"dxnnymurphy.io/cryptodatastream/pkg/configuration"
-	model "dxnnymurphy.io/cryptodatastream/pkg/model/cryptodatastream/v3"
-	"dxnnymurphy.io/cryptodatastream/pkg/resource"
+	authenticationbasic "dxnnymurphy.io/datastream/pkg/authentication/basic"
+	"dxnnymurphy.io/datastream/pkg/configuration"
+	model "dxnnymurphy.io/datastream/pkg/model/datastream/v3"
+	"dxnnymurphy.io/datastream/pkg/resource"
 )
 
 type ControllerApiServiceV1 struct {
@@ -171,7 +171,7 @@ func (_self *ControllerApiServiceV1) Start(ctx context.Context, err chan error) 
 
 				proxy_grpc_target_endpoint := fmt.Sprintf("%+v:%+v", proxy_grpc_target_host, proxy_grpc_target_port)
 
-				err_from_proxy_api2grpc := model.RegisterServiceCryptoDataStreamHandlerFromEndpoint(
+				err_from_proxy_api2grpc := model.RegisterServiceDataStreamHandlerFromEndpoint(
 					ctx,
 					mux_api,
 					proxy_grpc_target_endpoint,

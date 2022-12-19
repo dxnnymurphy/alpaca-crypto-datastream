@@ -3,7 +3,7 @@ package application
 import (
 	"context"
 
-	applicationv1 "dxnnymurphy.io/cryptodatastream/pkg/application/v1"
+	applicationv1 "dxnnymurphy.io/datastream/pkg/application/v1"
 )
 
 var (

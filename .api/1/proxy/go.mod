@@ -1,4 +1,4 @@
-module dxnnymurphy.io/cryptodatastream
+module dxnnymurphy.io/datastream
 
 go 1.18
 
